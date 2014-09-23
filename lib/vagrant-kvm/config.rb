@@ -86,6 +86,12 @@ module VagrantPlugins
       attr_accessor :seclabel
       attr_accessor :force_pause
 
+      # volume caching strategy
+      # default: qemu default
+      #
+      # @return [String]
+      attr_accessor :volume_cache
+
       def initialize
         @customizations   = []
         @name             = UNSET_VALUE
@@ -108,6 +114,7 @@ module VagrantPlugins
         @force_pause      = UNSET_VALUE
         @enable_virtfs    = UNSET_VALUE
         @virtio_rng       = UNSET_VALUE
+        @volume_cache     = UNSET_VALUE
       end
 
       # Customize the VM by predefined actions.
@@ -192,6 +199,7 @@ module VagrantPlugins
         @force_pause = false if @force_pause == UNSET_VALUE
         @enable_virtfs = false if @enable_virtfs == UNSET_VALUE
         @virtio_rng = nil if @virtio_rng == UNSET_VALUE
+        @volume_cache = "default" if @volume_cache == UNSET_VALUE
       end
 
       def validate(machine)
