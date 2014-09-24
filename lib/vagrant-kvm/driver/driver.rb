@@ -180,6 +180,7 @@ module VagrantPlugins
             :qemu_bin => "/usr/bin/qemu",
             :disk => volume.path,
             :name => @name
+            :volume_cache => "default",
           }.merge(args)
           definition.update(args)
           # create vm
